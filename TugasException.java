@@ -8,20 +8,29 @@ package TugasKeempat;
  *
  * @author Salwa Faizah
  */
-public class TugasException {
-    public static void main(String[] args) {
-        int bilangan=10;
-        String b[] = {"a","b","c"};
-        try{
-            System.out.println(bilangan/2);
-            System.out.println(b[4]);
-        }catch (ArithmeticException e) {
-            System.out.println("Eror Arithmetic");
-        }catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("eror kapasitas array melebihi kapasitas");
-        }catch (Exception e) {
-            System.out.println("terdapat eror");
+public class TugasException extends ArithmeticException {
+
+    public TugasException(String message) {
+        super(message);
+    }
+
+    public static void cekAngka(int angka) throws TugasException {
+        if (angka < 0) {
+            // Jika angka negatif, lemparkan custom exception
+            throw new TugasException("Anda memasukkan bilangan negatif!");
         }
-    
+        System.out.println("Angka valid: " + angka);
+    }
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+
+        int angka = -3; // Angka negatif
+        try {
+            cekAngka(angka);
+        } catch (TugasException e) {
+
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
